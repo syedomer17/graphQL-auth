@@ -54,6 +54,7 @@ Create a `.env` file at the root:
 PORT=8000
 MONGO_URI=
 JWT_SECRET=your_jwt_secret_here
+CLIENT_URL=
 
 # Email Config (example using Gmail)
 EMAIL=your_email
