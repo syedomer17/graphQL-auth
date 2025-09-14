@@ -6,13 +6,13 @@ export const sendEmail = async (to: string, subject: string, text: string): Prom
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: env.EMAIL_USER,
-        pass: env.EMAIL_PASSWORD,
+        user: env.EMAIL,
+        pass: env.PASSWORD,
       },
     });
 
     await transporter.sendMail({
-      from: env.EMAIL_USER,
+      from: env.EMAIL,
       to,
       subject,
       text,

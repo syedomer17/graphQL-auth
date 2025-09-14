@@ -1,3 +1,4 @@
+// src/config/env.ts
 import dotenv from "dotenv";
 import { z } from "zod";
 
@@ -13,7 +14,7 @@ const envSchema = z.object({
     .default("8000")
     .refine((val) => !isNaN(Number(val)), { message: "PORT must be a number" }),
 
-  MONGO_URL: z.string().url({ message: "MONGO_URL must be a valid URL" }),
+  MONGO_URI: z.string().url({ message: "MONGO_URI must be a valid URL" }),
 
   JWT_SECRET: z
     .string()
@@ -21,12 +22,15 @@ const envSchema = z.object({
 
   CLIENT_URL: z.string().url({ message: "CLIENT_URL must be a valid URL" }),
 
-  EMAIL_USER: z.string().email({ message: "EMAIL_USER must be a valid email" }),
+  EMAIL: z.string().email({ message: "EMAIL must be a valid email" }),
 
-  EMAIL_PASSWORD: z.string().min(8, { message: "EMAIL_PASSWORD must be at least 8 characters" }),
+  PASSWORD: z
+    .string()
+    .min(8, { message: "PASSWORD must be at least 8 characters" }),
 });
 
-// Parse and export
+// Parse and export with inferred type
 const env = envSchema.parse(process.env);
 
+export type Env = z.infer<typeof envSchema>; // ✅ Type for autocompletion
 export default env;

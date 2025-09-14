@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import env from './env';
 
-const MONGO_URI = env.MONGO_URL;
+const MONGO_URI = env.MONGO_URI;
 
 if (!MONGO_URI) {
   throw new Error('MONGO_URI is not defined in environment variables');
